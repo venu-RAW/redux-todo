@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { history } from "./helper/history";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from "./components/Login/Login";
+import Home from "./components/Home/Home";
+import TodoList from "./components/TodoList/TodoList";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+function App(props) {
+	return (
+		<div className="App">
+			<Router history={history}>
+				<Switch>
+					<Route path="/" exact component={Login} />
+					<ProtectedRoute exact path="/home" {...props} comp={Home} />
+					<ProtectedRoute exact path="/todo" {...props} comp={TodoList} />
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		token: state.login.token,
+		loggedIn: state.login.loggedIn,
+	};
+};
+
+export default connect(mapStateToProps)(App);

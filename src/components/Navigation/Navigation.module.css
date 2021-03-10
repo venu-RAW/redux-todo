@@ -1,0 +1,13 @@
+.navMenu {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.navLinks {
+	list-style: none;
+}
+
+.navText {
+	text-decoration: none;
+}
