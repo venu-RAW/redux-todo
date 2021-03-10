@@ -12,6 +12,7 @@ function Login(props) {
 	const { handleSubmit } = props;
 	return (
 		<>
+			<h1>Login</h1>
 			<form
 				name="form"
 				onSubmit={(e) => {

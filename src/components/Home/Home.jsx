@@ -5,7 +5,7 @@ function Home() {
 	return (
 		<div>
 			<Navigation />
-			home Page
+			Home Page
 		</div>
 	);
 }
